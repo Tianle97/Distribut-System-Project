@@ -1,17 +1,26 @@
-package ie.gmit.sw.DS.model;
+package ie.gmit.sw.DS.RMI.model;
 
-import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class BookingCar {
 
 	private long orderId;
 	private String userName;
 	private String carName;
 	private double carCost;
-	private Date date;
+	private String date;
 
 	public BookingCar() {
 		super();
+	}
+
+	public BookingCar(long orderId, String userName, String carName, double carCost, String date) {
+		this.orderId = orderId;
+		this.userName = userName;
+		this.carName = carName;
+		this.carCost = carCost;
+		this.date = date;
 	}
 
 	public long getOrderId() {
@@ -46,11 +55,11 @@ public class BookingCar {
 		this.carCost = carCost;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
