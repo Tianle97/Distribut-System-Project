@@ -1,11 +1,10 @@
-package ie.gmit.sw.DS.RMI.model;
+package ie.gmit.sw.DS.ServiceSetup.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class BookingCar {
 
-	private long orderId;
 	private String userName;
 	private String carName;
 	private double carCost;
@@ -15,20 +14,11 @@ public class BookingCar {
 		super();
 	}
 
-	public BookingCar(long orderId, String userName, String carName, double carCost, String date) {
-		this.orderId = orderId;
+	public BookingCar(String userName, String carName, double carCost, String date) {
 		this.userName = userName;
 		this.carName = carName;
 		this.carCost = carCost;
 		this.date = date;
-	}
-
-	public long getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(long orderId) {
-		this.orderId = orderId;
 	}
 
 	public String getUserName() {

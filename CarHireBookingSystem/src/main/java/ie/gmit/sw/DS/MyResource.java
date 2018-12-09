@@ -7,7 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ie.gmit.sw.DS.RMI.model.BookingCar;
+import ie.gmit.sw.DS.ServiceSetup.model.BookingCar;
+
 
 /**
  * Root resource (exposed at "myresource" path)

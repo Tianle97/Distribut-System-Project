@@ -1,16 +1,18 @@
-package ie.gmit.sw.DS.RMI.services;
+package ie.gmit.sw.DS.ServiceSetup.service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
-import ie.gmit.sw.DS.RMI.model.BookingCar;
+import ie.gmit.sw.DS.ServiceSetup.model.BookingCar;
+
 public interface BookingCarService extends Remote   {
 	
 	public List<BookingCar> getAll() throws RemoteException;
-	public BookingCar getInfo() throws RemoteException;
-	public BookingCar deleteInfo() throws RemoteException;
-	public BookingCar createInfo() throws RemoteException;
+	public String getInfo(String userName,String carName) throws RemoteException;
+	public String deleteInfo(String userName,String carName) throws RemoteException;
+	public String createInfo(String userName,String carName,double carCost,String date) throws RemoteException;
 
 //	public List<BookingCar> getAll() {
 //		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
