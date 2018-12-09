@@ -1,0 +1,24 @@
+package ie.gmit.sw;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+public interface BookingCarService extends Remote   {
+	
+	public List<BookingCar> getAll() throws RemoteException;
+	public String getInfo(String userName,String carName) throws RemoteException;
+	public String deleteInfo(String userName,String carName) throws RemoteException;
+	public String createInfo(String userName,String carName,double carCost,String date) throws RemoteException;
+	public String updateInfo(String userName,String carName,double carCost,String date) throws RemoteException;
+	
+//	public List<BookingCar> getAll() {
+//		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		Date date = new Date();
+//		BookingCar bc1 = new BookingCar(1, "Mratin", "Mercedes-Benz", 10000, df.format(date));
+//		List<BookingCar> list = new ArrayList<BookingCar>();
+//		list.add(bc1);
+//		return list;
+//	}
+
+}
