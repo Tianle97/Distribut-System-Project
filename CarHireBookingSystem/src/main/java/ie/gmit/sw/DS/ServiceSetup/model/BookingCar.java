@@ -1,10 +1,16 @@
 package ie.gmit.sw.DS.ServiceSetup.model;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class BookingCar {
+public class BookingCar implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1402101439161282599L;
 	private String userName;
 	private String carName;
 	private double carCost;

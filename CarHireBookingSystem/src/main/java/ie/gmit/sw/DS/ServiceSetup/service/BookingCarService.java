@@ -13,7 +13,8 @@ public interface BookingCarService extends Remote   {
 	public String getInfo(String userName,String carName) throws RemoteException;
 	public String deleteInfo(String userName,String carName) throws RemoteException;
 	public String createInfo(String userName,String carName,double carCost,String date) throws RemoteException;
-
+	public String updateInfo(String userName,String carName,double carCost,String date) throws RemoteException;
+	
 //	public List<BookingCar> getAll() {
 //		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 //		Date date = new Date();

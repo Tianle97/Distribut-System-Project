@@ -15,7 +15,7 @@ import ie.gmit.sw.DS.ServiceSetup.service.BookingCarService;
 
 public class BookingCarServiceImp extends UnicastRemoteObject implements BookingCarService {
 
-	protected BookingCarServiceImp() throws RemoteException {
+	public BookingCarServiceImp() throws RemoteException {
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -65,6 +65,13 @@ public class BookingCarServiceImp extends UnicastRemoteObject implements Booking
 	public String createInfo(String userName, String carName, double carCost, String date) throws RemoteException {
 		lbd.add(new BookingCar(userName,carName,carCost,date));
 		return "add order Seccessful!";
+	}
+	
+	//update order
+	public String updateInfo(String userName,String carName,double carCost,String date) throws RemoteException{
+		
+		return null;
+		
 	}
 
 }
