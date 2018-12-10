@@ -1,5 +1,4 @@
-package ie.gmit.sw.DS;
-
+package ie.gmit.sw.REST;
 import java.rmi.RemoteException;
 import java.util.List;
 
@@ -8,17 +7,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import ie.gmit.sw.DS.ServiceSetup.model.BookingCar;
-import ie.gmit.sw.DS.ServiceSetup.servicesImp.BookingCarServiceImp;
-
-
 /**
  * Root resource (exposed at "myresource" path)
  */
 @Path("myresource")
-public class MyResource {
+public class BookingResource {
 	
-	BookingCarServiceImp bcsImp ;
+	//BookingCarServiceImp bcsImp ;
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -28,10 +23,17 @@ public class MyResource {
      * @throws RemoteException 
      */
 	
-	//@Path("/all")
+//	@Path("/all")
 //    @GET
 //    @Produces(MediaType.APPLICATION_XML)
 //    public List<BookingCar> getAll() throws RemoteException  {
 //    	return bcsImp.getAll();
 //    }
+	
+  @Path("/{name}")
+  @GET
+  @Produces(MediaType.APPLICATION_XML)
+  public String getAll() throws RemoteException  {
+  	return "hello";
+  }
 }
