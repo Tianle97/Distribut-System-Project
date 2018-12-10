@@ -1,0 +1,39 @@
+<xsd:schema attributeFormDefault="unqualified" 
+		    xmlns:gmit="http://Model"
+		    targetNamespace="http://Model" 
+		    elementFormDefault="qualified"
+		    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name='comment' type='xsd:string'/>	
+	
+	<xsd:simpleType name="bid">
+		<xsd:restriction base="xsd:int">
+		<!-- used in regular expressions -->
+			<xsd:pattern value="[0-9]{5}(-[A-Z]{4})?" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name='SKU'>
+	    <xsd:restriction base='xsd:string'>
+	      <xsd:pattern value='\d{3}\w{3}'/>
+	    </xsd:restriction>
+ 	</xsd:simpleType>
+  	
+  	<!-- Customer Schema -->
+	<xsd:complexType name='BookingCar'>
+		<xsd:annotation>
+			<xsd:documentation>
+				BookingCar Schema
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name='userName' type='xsd:string' />
+			<xsd:element name='carName' type='xsd:string' />
+			<xsd:element name='address' type='xsd:string' />
+			<xsd:element name='startDate' type='xsd:string' />
+			<xsd:element name='endDate' type='xsd:string' />
+			<xsd:element name='cost' type='xsd:decimal' />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+</xsd:schema>
