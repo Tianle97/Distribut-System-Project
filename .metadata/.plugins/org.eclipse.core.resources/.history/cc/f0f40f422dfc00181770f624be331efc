@@ -1,0 +1,24 @@
+<xsd:schema attributeFormDefault="unqualified" 
+		    xmlns="" 
+		    targetNamespace="" 
+		    elementFormDefault="qualified"
+		    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name='comment' type='xsd:string'/>	
+  	
+  <xsd:complexType name='Customer'>
+		<xsd:annotation>
+			<xsd:documentation>
+				Customer Schema
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name='name' type='xsd:string' />
+			<xsd:element name='firstName' type='xsd:string' />
+			<xsd:element name='lastName' type='xsd:string' />
+			<xsd:element name='age' type='xsd:int' />
+			<xsd:element name='county' type='xsd:string' />
+			 <xsd:element name='dateOfBirth' type='xsd:string'/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,20 +1,11 @@
 package ie.gmit.sw;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamSource;
 
 import ie.gmit.sw.Model.BookingCar;
 
@@ -28,23 +19,13 @@ public class BookingCarServiceImp extends UnicastRemoteObject implements Booking
 	public BookingCarServiceImp() throws RemoteException {
 	}
 	// initial booking data
-	public void initialBookingData() throws JAXBException, IOException {
+	public void initialBookingData(){
 		
-		JAXBContext jc = JAXBContext.newInstance("ie.gmit.sw.model");
-		Marshaller m = jc.createMarshaller();
 		//String date = DateTime.CURRENT_DATE;
 		lbd.add(new BookingCar("Martin", "Mercedes-Benz","Galway","2013", "2015",new BigDecimal(90000)));
 		lbd.add(new BookingCar("Mark", "Bavarian Motor Work","Galway","2013", "2019",new BigDecimal(100000)));
 		lbd.add(new BookingCar("John", "SKODA","Athlone","2014", "2018",new BigDecimal(400000)));
 		lbd.add(new BookingCar("Joe", "SKODA","Dublin","2010", "2015",new BigDecimal(10000)));
-		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		m.marshal(lbd, new FileWriter("order.xml"));
-		
-		File file = new File("order.xml");
-		Unmarshaller um = jc.createUnmarshaller();
-		StreamSource source1 = new StreamSource(file);
-		JAXBElement<BookingCar> poElement1 = um.unmarshal(source1, BookingCar.class);
-		BookingCar poFromXml = (BookingCar) poElement1.getValue();
 	}
 
 	// getAll Information
@@ -66,9 +47,9 @@ public class BookingCarServiceImp extends UnicastRemoteObject implements Booking
 		}
 
 		//delete the information
-		public void deleteInfo(String userName, String carName) throws RemoteException {
+		public void deleteInfo(String userName) throws RemoteException {
 			for (BookingCar bc : lbd) {
-				if (bc.getUserName().equals(userName) && bc.getCarName().equals(carName)) {
+				if (bc.getUserName().equals(userName)) {
 					lbd.remove(bc);
 					System.out.println("delete seccessful!");
 				}

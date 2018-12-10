@@ -1,0 +1,5 @@
+package ie.gmit.sw.ServiceSetup.database;
+
+public class BookingCarDatabase {
+
+}

@@ -1,0 +1,20 @@
+package ie.gmit.sw.RMIClient;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+import ie.gmit.sw.Model.Booking;
+
+public interface RMIServer extends Remote {
+	public void createCarHire(String q) throws RemoteException; // to create a
+																// booking
+	public List<Booking> readCarHire() throws RemoteException; // to list all
+	
+	public void updateCarHire(String q) throws RemoteException; // to update an
+	
+	public void deleteCarHire(String q) throws RemoteException; // to delete an
+																// existing
+																// booking
+
+}

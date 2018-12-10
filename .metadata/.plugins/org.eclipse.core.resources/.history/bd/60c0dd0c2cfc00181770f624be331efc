@@ -1,0 +1,38 @@
+<xs:schema attributeFormDefault="unqualified" 
+		   xmlns="" 
+		   targetNamespace="" 
+		   elementFormDefault="qualified"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name='comment' type='xsd:string'/>
+	<xsd:element name='booking' type='gmit:Booking'/>		
+	   
+	<xsd:simpleType name='SKU'>
+    	<xsd:restriction base='xsd:string'>
+      		<xsd:pattern value='\d{3}\w{3}'/>
+        </xsd:restriction>
+  	</xsd:simpleType>
+  	
+  <xs:element name="Customer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="name"/>
+        <xs:element type="xs:string" name="gender"/>
+        <xs:element type="xs:string" name="county"/>
+        <xs:element type="xs:string" name="address"/>
+        <xs:element name="address">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="addressLine1"/>
+              <xs:element type="xs:string" name="addressLine2"/>
+              <xs:element type="xs:string" name="country"/>
+              <xs:element type="xs:string" name="state"/>
+              <xs:element type="xs:short" name="zip"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="assestsAllocated" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

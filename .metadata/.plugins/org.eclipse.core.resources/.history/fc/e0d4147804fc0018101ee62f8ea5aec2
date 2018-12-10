@@ -1,0 +1,22 @@
+package ie.gmit.sw.Model;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement
+@XmlType(name = "Customer", propOrder = {
+	    "name",
+	    "gender",
+	    "county",
+	    "address"
+	})
+public class Customer {
+	
+	@XmlElement(required = true)
+	private String name;
+	private String gender;
+	private String county;
+	private String adderss;
+
+}

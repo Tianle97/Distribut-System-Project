@@ -1,0 +1,64 @@
+package ie.gmit.sw.Model;
+
+import java.io.StringReader;
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
+
+public class Marshal {
+	public Marshal(){
+	}
+	
+	public String getBookingAsXML(BookingCar bookingCar) throws JAXBException {
+		// Marshal the Booking into XML
+		StringWriter sw = new StringWriter();
+		Marshaller m;
+
+		
+			JAXBContext jc = JAXBContext.newInstance("ie.gmit.sw.ds.Model");
+			m = jc.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			m.marshal(bookingCar, sw);
+
+		return sw.toString();
+	}
+	
+	// Function to unmarshal the XML to a Java object(Booking)
+		public BookingCar unmarshalBooking(String xml)
+		{
+			StringReader stringReader = new StringReader(xml);
+			Unmarshaller xmlUnmarshaller;
+			
+			BookingCar bookingCarToUnmarshal = null;
+			
+			// Try and unmarshal the booking
+			try
+			{
+				JAXBContext jaxb = JAXBContext.newInstance("ie.gmit.sw.BookingModel");
+				
+				// Create the unmarshaller
+				xmlUnmarshaller = jaxb.createUnmarshaller();
+				
+				// Create a source to read in our XML to
+				StreamSource src = new StreamSource(stringReader);
+				
+				// Using this source of XML, unmarshal the xml to a Booking object
+				JAXBElement<BookingCar> bookingXMLElement = xmlUnmarshaller.unmarshal(src, BookingCar.class);
+				bookingCarToUnmarshal = (BookingCar) bookingXMLElement.getValue();
+				
+			} 
+			catch (JAXBException e)
+			{
+				System.out.println("Error unmarshalling booking as XML: " + e);
+			}
+					
+			// Return the booking object we just unmarshalled
+			return bookingCarToUnmarshal;
+		}
+
+}

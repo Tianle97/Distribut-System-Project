@@ -11,7 +11,7 @@ public interface BookingCarService extends Remote   {
 	
 	public List<BookingCar> getAll() throws RemoteException;
 	public String getInfo(String userName,String carName) throws RemoteException;
-	public void deleteInfo(String userName,String carName) throws RemoteException;
+	public void deleteInfo(String userName) throws RemoteException;
 	public String createInfo(String userName, String carName, String address, String startDate, String endDate,
 			BigDecimal cost) throws RemoteException;
 	public String updateInfo(String userName, String carName, String address, String startDate, String endDate,

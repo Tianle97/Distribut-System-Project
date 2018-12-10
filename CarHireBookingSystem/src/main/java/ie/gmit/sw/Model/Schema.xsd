@@ -19,37 +19,6 @@
  	</xsd:simpleType>
   	
   	<!-- Customer Schema -->
-	<xsd:complexType name='Customer'>
-		<xsd:annotation>
-			<xsd:documentation>
-				Customer Schema
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name='cid' type='xsd:int' />
-			<xsd:element name='name' type='xsd:string' />
-			<xsd:element name='gender' type='xsd:string' />
-			<xsd:element name='county' type='xsd:string' />
-			<xsd:element name='address' type='xsd:string' />
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<!-- Vehicle Schema -->
-	<xsd:complexType name='Vehicle'>
-		<xsd:annotation>
-			<xsd:documentation>
-				Vehicle Schema
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name='vid' type='xsd:int' />
-			<xsd:element name='carBrand' type='xsd:string' />
-			<xsd:element name='year' type='xsd:string' />
-			<xsd:element name='color' type='xsd:string' />
-		</xsd:sequence>
-	</xsd:complexType>
-	
-	<!-- BookingCar Schema -->
 	<xsd:complexType name='BookingCar'>
 		<xsd:annotation>
 			<xsd:documentation>
@@ -57,13 +26,14 @@
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name='customer' type='gmit:Customer' />
-			<xsd:element name='vehicle' type='gmit:Vehicle' />
+			<xsd:element name='userName' type='xsd:string' />
+			<xsd:element name='carName' type='xsd:string' />
+			<xsd:element name='address' type='xsd:string' />
+			<xsd:element name='startDate' type='xsd:string' />
+			<xsd:element name='endDate' type='xsd:string' />
+			<xsd:element name='cost' type='xsd:decimal' />
 		</xsd:sequence>
-		    <xsd:attribute name='bid' type='gmit:bid' use='required'/>
-		    <xsd:attribute name='startDate' type='xsd:string' use='required'/>
-		    <xsd:attribute name='endDate' type='xsd:string' use='required'/>
-		    <xsd:attribute name='orderDate' type='xsd:date' use='required'/>
 	</xsd:complexType>
+	
 	
 </xsd:schema>

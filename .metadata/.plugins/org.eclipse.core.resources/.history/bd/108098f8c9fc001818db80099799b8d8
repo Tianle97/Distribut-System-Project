@@ -1,0 +1,139 @@
+package ie.gmit.sw.REST;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import ie.gmit.sw.Model.BookingCar;
+import ie.gmit.sw.Model.JAXBPO;
+import ie.gmit.sw.RMIClient.BookingCarServiceImp;
+import ie.gmit.sw.RMIClient.RMIServer;
+
+/**
+ * Root resource (exposed at "myresource" path)
+ */
+@Path("bookingSystem")
+public class BookingResource extends JAXBPO {
+	
+	//BookingCarServiceImp bcsImp ;
+	private BookingCarServiceImp bookingCarServiceImp;
+	JAXBPO jaxb = new JAXBPO();
+
+	// Constructor
+	public BookingResource() throws  RemoteException
+	{
+		bookingCarServiceImp = new BookingCarServiceImp();
+	}
+
+    /**
+     * Method handling HTTP GET requests. The returned object will be sent
+     * to the client as "text/plain" media type.
+     *
+     * @return String that will be returned as a text/plain response.
+     * @throws RemoteException 
+     */
+	
+	List<BookingCar> orders = new ArrayList<BookingCar>();
+	
+	
+	
+	
+	@GET
+	@Path("showAllBookings")
+	@Produces(MediaType.APPLICATION_XML)
+	public List<BookingCar> getBookings() 
+	{
+		// Create a list of BookingObjects to store them in when retrieved from the database
+		List<BookingCar> bookingObjects = new ArrayList<BookingCar>();
+		List<BookingCar> bookings = new ArrayList<BookingCar>();
+		
+		
+		// Get the bookings from the datbaase
+		bookingObjects = bookingCarServiceImp.getAll();
+				
+		// Loop through all our bookingObjects and assign the variables from the bookingObject to our local objects
+		// These can be located in the BookingModel package
+		for(BookingObject bo : bookingObjects)
+		{
+			Booking booking = new Booking();
+
+			booking.setBookingID(bo.getBookingID());
+			booking.setCustomerID(bo.getCustomerID());
+			booking.setCarID(bo.getCarID());
+			booking.setBookingStartDate(bo.getBookingStartDate());
+			booking.setBookingEndDate(bo.getBookingEndDate());
+			booking.setCarRegistration(bo.getCarRegistration());
+			
+			bookings.add(booking);
+		}
+		
+		System.out.println("Succesfully extracted info from remote object.");
+		
+		/*
+		try
+		{
+			// Create variable to assign to XML
+			for(i=0; i<bookings.size(); i++)
+			{
+				Booking bookingToMarshal = bookings.get(i);
+				
+				objectAsXML = marshalBooking(bookingToMarshal);
+				
+				objectsAsXML = objectAsXML.concat(objectAsXML);
+				// Trim off the header from the XML as its upsetting the formatting
+				if(i>0)
+				{
+					trimmedObjectsAsXML = objectAsXML.substring(objectAsXML.indexOf('\n')+1);
+					objectsAsXML = objectAsXML.concat(trimmedObjectsAsXML);
+				}
+				
+			}
+			
+		
+			System.out.println("Succesfully marshalled to XML.");
+		} 
+		catch (Exception e)
+		{
+			System.out.println("Error trying to call marshalBooking..." + e);
+		}
+			*/
+		System.out.println(bookings);
+
+		// Return the objects as XML
+		return bookings;
+	}
+	
+	
+	
+	@GET
+	@Produces({MediaType.APPLICATION_XML})
+	@Path("/showAll")
+	/* Note how this method has been annotated to produce both XML
+	 * The response format which is sent will depend on the Accept: header field in the HTTP request from the client 
+	 */
+	public BookingCar getOrders() throws MalformedURLException, RemoteException, Exception  {
+		RMIServer rs;
+		rs = (RMIServer) Naming.lookup("rmi://127.0.0.1:1099/bookingCarService");
+		List<BookingCar> allOrders = rs.getAll();
+		for(BookingCar bc : allOrders)
+		{
+			System.out.println(bc.toString());
+			
+		}
+		
+		return (BookingCar) allOrders;		
+	}
+}

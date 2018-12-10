@@ -1,0 +1,9 @@
+package ie.gmit.sw.RMIClient;
+
+import java.rmi.Naming;
+
+public class RMIConnect {
+
+	RMIServer ds = (RMIServer) Naming.lookup("bookingCarService");
+
+}

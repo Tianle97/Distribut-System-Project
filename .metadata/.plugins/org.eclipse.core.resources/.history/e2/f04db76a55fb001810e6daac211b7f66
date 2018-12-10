@@ -1,0 +1,14 @@
+package ie.gmit.sw.DS.ServiceSetup;
+
+import ie.gmit.sw.DS.ServiceSetup.service.BookingCarService;
+import ie.gmit.sw.DS.ServiceSetup.servicesImp.BookingCarServiceImp;
+
+public class ServiceSetup {
+
+	public static void main(String[] args) throws Exception {
+		//Create an instance of a BookingCarServiceImp. As BookingCarServiceImp implements the BookingCarService
+        //interface, it can be referred to as a BookingCarService type.
+        BookingCarService bcs = new BookingCarServiceImp();
+	}
+
+}
