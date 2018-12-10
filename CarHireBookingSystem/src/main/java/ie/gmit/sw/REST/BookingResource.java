@@ -1,19 +1,28 @@
 package ie.gmit.sw.REST;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import ie.gmit.sw.Model.BookingCar;
+import ie.gmit.sw.RMIClient.RMIServer;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
+@Path("bookingSystem")
 public class BookingResource {
 	
 	//BookingCarServiceImp bcsImp ;
+	RMIServer rs;
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -30,10 +39,21 @@ public class BookingResource {
 //    	return bcsImp.getAll();
 //    }
 	
-  @Path("/{name}")
-  @GET
-  @Produces(MediaType.APPLICATION_XML)
-  public String getAll() throws RemoteException  {
-  	return "hello";
-  }
+	List<BookingCar> orders = new ArrayList<BookingCar>();
+	@GET
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON,MediaType.TEXT_PLAIN})
+	@Path("/{value}")
+	/* Note how this method has been annotated to produce both XML and JSON
+	 * The response format which is sent will depend on the Accept: header field in the HTTP request from the client 
+	 */
+	public BookingCar getOrder(@PathParam("value") String value) {
+		BookingCar requested = null;
+		for( BookingCar b : orders) {
+			if(b.getBid().equals(value)) {
+				requested = b;
+			}
+		}
+		
+		return requested;		
+	}
 }

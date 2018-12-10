@@ -11,6 +11,12 @@
 			<xsd:pattern value="[0-9]{5}(-[A-Z]{4})?" />
 		</xsd:restriction>
 	</xsd:simpleType>
+	
+	<xsd:simpleType name='SKU'>
+	    <xsd:restriction base='xsd:string'>
+	      <xsd:pattern value='\d{3}\w{3}'/>
+	    </xsd:restriction>
+ 	</xsd:simpleType>
   	
   	<!-- Customer Schema -->
 	<xsd:complexType name='Customer'>
@@ -23,7 +29,7 @@
 			<xsd:element name='cid' type='xsd:int' />
 			<xsd:element name='name' type='xsd:string' />
 			<xsd:element name='gender' type='xsd:string' />
-			<xsd:element name='cunty' type='xsd:string' />
+			<xsd:element name='county' type='xsd:string' />
 			<xsd:element name='address' type='xsd:string' />
 		</xsd:sequence>
 	</xsd:complexType>
@@ -43,18 +49,21 @@
 		</xsd:sequence>
 	</xsd:complexType>
 	
-	<!-- Booking Schema -->
-	<xsd:complexType name='Booking'>
+	<!-- BookingCar Schema -->
+	<xsd:complexType name='BookingCar'>
 		<xsd:annotation>
 			<xsd:documentation>
-				Booking Schema
+				BookingCar Schema
 			</xsd:documentation>
 		</xsd:annotation>
-			<xsd:attribute name='vid' type='xsd:int'/>
-		    <xsd:attribute name='cid' type='xsd:int'/>
+		<xsd:sequence>
+			<xsd:element name='customer' type='gmit:Customer' />
+			<xsd:element name='vehicle' type='gmit:Vehicle' />
+		</xsd:sequence>
 		    <xsd:attribute name='bid' type='gmit:bid' use='required'/>
 		    <xsd:attribute name='startDate' type='xsd:string' use='required'/>
 		    <xsd:attribute name='endDate' type='xsd:string' use='required'/>
+		    <xsd:attribute name='orderDate' type='xsd:date' use='required'/>
 	</xsd:complexType>
 	
 </xsd:schema>
