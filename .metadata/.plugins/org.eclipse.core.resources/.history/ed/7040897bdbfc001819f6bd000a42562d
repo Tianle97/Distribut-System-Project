@@ -50,6 +50,8 @@ public class BookingResource extends JAXBPO {
 	@Path("showAll")
 	@Produces(MediaType.APPLICATION_XML)
 	public List<BookingCar> getBookings() throws JAXBException, IOException {
+		// Create a list of BookingObjects to store them in when retrieved from
+		// the database
 		List<BookingCar> bookingCars = new ArrayList<BookingCar>();
 		List<BookingCar> orders = new ArrayList<BookingCar>();
 
@@ -59,7 +61,7 @@ public class BookingResource extends JAXBPO {
 		}
 		bookingCars = bookingCarServiceImp.getAll();
 
-		// Loop through all our bookCarOders and assign the variables from the
+		// Loop through all our bookCar and assign the variables from the
 		for (BookingCar bc : bookingCars) {
 			BookingCar booking = new BookingCar();
 
@@ -71,9 +73,8 @@ public class BookingResource extends JAXBPO {
 
 			orders.add(booking);
 
-			
+			// Return the orders as XML
 		}
-		// Return the orders as XML
 		return orders;
 	}
 
@@ -86,7 +87,7 @@ public class BookingResource extends JAXBPO {
 		System.out.println("Suceddful delete");
 	}
 
-	//Post Delete
+	// Gets the booking ID from the user for the delteBooking method
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
 	@Path("deletePost")
@@ -98,7 +99,7 @@ public class BookingResource extends JAXBPO {
 		return "Suceddful delete";
 	}
 
-	// Creates a bookingOrder
+	// Creates a booking
 	@POST
 	@Path("createOders")
 	@Consumes(MediaType.APPLICATION_XML)

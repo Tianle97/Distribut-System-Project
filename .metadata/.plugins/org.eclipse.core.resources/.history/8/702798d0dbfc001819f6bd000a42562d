@@ -98,7 +98,7 @@ public class BookingResource extends JAXBPO {
 		return "Suceddful delete";
 	}
 
-	// Creates a bookingOrder
+	// Creates a booking
 	@POST
 	@Path("createOders")
 	@Consumes(MediaType.APPLICATION_XML)
